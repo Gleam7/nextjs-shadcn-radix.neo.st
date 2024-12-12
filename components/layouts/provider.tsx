@@ -5,6 +5,7 @@ import * as React from 'react';
 import { SessionProvider } from 'next-auth/react';
 
 import { ThemeProvider as NextThemesProvider, type ThemeProviderProps } from 'next-themes';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 //import { useStore } from '@/hooks/use-store';
 import { useSidebar } from '@/hooks/use-sidebar';
@@ -32,6 +33,7 @@ export function Provider({ children, ...props }: ThemeProviderProps) {
 
 	return (
 		<SessionProvider>
+			<SpeedInsights></SpeedInsights>
 			<NextThemesProvider {...props}>{children}</NextThemesProvider>
 		</SessionProvider>
 	);
