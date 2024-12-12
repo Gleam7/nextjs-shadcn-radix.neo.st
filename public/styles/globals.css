@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+	font-style: normal;
+	font-weight: normal;
+	src: url('/fonts/Jal_Haru.woff') format('woff');
+	font-family: 'Jal_Haru';
+}
+
+@font-face {
+	font-style: normal;
+	font-weight: normal;
+	src: url('/fonts/omyu_pretty.woff2') format('woff2');
+	font-family: 'omyu_pretty';
+}
+
+@font-face {
+	src: url('/fonts/Moneygraphy-Rounded.woff2') format('woff2'), url('/fonts/Moneygraphy-Rounded.woff') format('woff');
+	font-family: 'Moneygraphy-Rounded';
+}
+
+@layer base {
+	:root {
+		--light-scrollbar-bg: rgba(125, 125, 125, 0.5);
+		--dark-scrollbar-bg: var(--light-scrollbar-bg);
+		--scrollbar-bg: var(--light-scrollbar-bg);
+
+		--fixed-height: 6.3rem;
+	}
+
+	.dark {
+		--scrollbar-bg: var(--dark-scrollbar-bg);
+	}
+}
+
+/*****************************************************************************/
+::-webkit-scrollbar,
+*::-webkit-scrollbar {
+	display: block;
+	width: 0.35rem;
+	height: 0.35rem;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-button {
+	display: none;
+	background-color: var(--scrollbar-bg);
+}
+
+:active::-webkit-scrollbar-thumb,
+:focus::-webkit-scrollbar-thumb,
+:hover::-webkit-scrollbar-thumb {
+	visibility: visible;
+}
+
+::-webkit-scrollbar-thumb {
+	visibility: hidden;
+	border-radius: 1rem;
+	background-color: var(--scrollbar-bg);
+}
+
+/*****************************************************************************/
+@media print {
+	* {
+		-webkit-print-color-adjust: exact;
+		print-color-adjust: exact;
+	}
+
+	aside {
+		display: none !important;
+	}
+}
+
+/*****************************************************************************/
+
+@import url(./tailwind.css);
+@import url(./theme_color_default.css);
+@import url(./theme_color_default2.css);
+/*@import url(./theme_color_blue.css);*/
+/*@import url(./theme_color_violet.css);*/

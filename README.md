@@ -7,8 +7,14 @@ nextjs with shadcn and radix-ui
 ```bash
 npx shadcn@latest init -d
 cd nextjs-shadcn-radix.neo.st
-npm install @radix-ui/primitive
-npm i next@latest eslint-config-next@latest react@latest react-dom@latest remixicon --legacy-peer-deps
+
+npm i --legacy-peer-deps next@latest eslint-config-next@latest react@latest react-dom@latest remixicon @remixicon/react next-auth tailwind-variants zustand immer @radix-ui/primitive recharts cmdk @tanstack/react-table vaul
+
+#npm update --legacy-peer-deps react react-dom
+
+npm i --legacy-peer-deps @radix-ui/react-form
+
+npx shadcn@latest add accordion alert alert-dialog aspect-ratio avatar badge breadcrumb button calendar card carousel chart checkbox collapsible command context-menu dialog drawer dropdown-menu hover-card input input-otp label menubar navigation-menu pagination popover progress radio-group resizable scroll-area select separator sheet skeleton slider sonner switch table tabs textarea toast toggle toggle-group tooltip sidebar
 ```
 
 ---
