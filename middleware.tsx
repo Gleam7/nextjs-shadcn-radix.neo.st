@@ -1,6 +1,6 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, type NextRequest } from 'next/server';
 
-import type { NextRequest } from 'next/server';
+//import { withAuth } from 'next-auth/middleware';
 import { getToken } from 'next-auth/jwt';
 
 // List of paths related to authentication processing
@@ -9,7 +9,7 @@ const authPage = ['/signin', '/signup'];
 // List of public paths
 const publicRoutes = ['/about', '/blog', '/demo', '/pricing'];
 
-export async function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest & { nextauth: { token: JWT } }) {
 	const path = request.nextUrl.pathname;
 	const isAuthRoute = authPage.includes(path);
 	const routeIdx = publicRoutes.findIndex((route) => {

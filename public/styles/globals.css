@@ -33,6 +33,13 @@
 	.dark {
 		--scrollbar-bg: var(--dark-scrollbar-bg);
 	}
+
+	*,
+	::before,
+	::after {
+		@apply border-gray-300/70;
+		@apply dark:border-gray-300/30;
+	}
 }
 
 /*****************************************************************************/
