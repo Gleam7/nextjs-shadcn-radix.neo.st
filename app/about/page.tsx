@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 	title: 'About',
 };
 
-const Page: React.FC = async () => {
+const Page = async () => {
 	const package_json_file = await fs.readFile(process.cwd() + '/package.json', 'utf8');
 	const package_json_data = JSON.stringify(JSON.parse(package_json_file), null, 4);
 	const session = await getServerSession(authOptions);

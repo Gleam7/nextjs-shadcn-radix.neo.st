@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from 'next/server';
 
 //import { withAuth } from 'next-auth/middleware';
-import { getToken } from 'next-auth/jwt';
+import { getToken, JWT } from 'next-auth/jwt';
 
 // List of paths related to authentication processing
 const authPage = ['/signin', '/signup'];
