@@ -87,7 +87,7 @@ export const authOptions: NextAuthOptions = {
 							accessToken: '<ACCESS_TOKEN>',
 						};
 					} else {
-						throw new Error("Can't find user info or password is not valid.");
+						throw new Error("Can't find user info or user info is not valid.");
 					}
 					// eslint-disable-next-line @typescript-eslint/no-explicit-any
 				} catch (error: any) {

@@ -22,3 +22,8 @@ export const GetRandomString = (len: number): string => {
 
 export const GetEnumFromString = <T extends Record<string, string>, K extends keyof T>(enumObj: T, value: string | number): T[keyof T] =>
 	enumObj[Object.keys(enumObj).filter((k) => enumObj[k as K].toString() === value)[0] as keyof typeof enumObj];
+
+export const getErrorMessage = (error: unknown) => {
+	if (error instanceof Error) return error.message;
+	return String(error);
+};

@@ -1,5 +1,7 @@
 'use client';
 
+import React from 'react';
+
 import { useForm } from 'react-hook-form';
 
 import Link from 'next/link';
@@ -28,14 +30,22 @@ import {
 	PasswordInput,
 } from '@/components/shadcn-ui';
 import { siteConfig } from '@/types';
+import { getErrorMessage } from '@/lib/utils';
 
 // Improved schema with additional validation rules
 const formSchema = z.object({
-	email: z.string().email({ message: 'Invalid email address' }),
+	email: z
+		.string()
+		.email({ message: 'Please enter a valid E-Mail address' })
+		.min(6, { message: 'E-Mail must be at least 6 characters long' })
+		.regex(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i, { message: 'Please enter a valid E-Mail address' }),
 	password: z
 		.string()
 		.min(6, { message: 'Password must be at least 6 characters long' })
-		.regex(/[a-zA-Z0-9]/, { message: 'Password must be alphanumeric' }),
+		.regex(/[a-zA-Z0-9]/, { message: 'Password must be alphanumeric' })
+		.regex(/[A-Z]/g, { message: 'Password needs at least 1 uppercase letter' })
+		.regex(/[^a-z]/gi, { message: 'Password needs at least 1 symbol' })
+		.regex(/[^0-9]/gi, { message: 'Password needs at least 1 number' }),
 });
 
 export default function SigninPreview() {
@@ -43,22 +53,13 @@ export default function SigninPreview() {
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			//email: '',
-			//password: '',
-			email: siteConfig.admin_id,
-			password: siteConfig.admin_id,
+			email: '',
+			password: '',
 		},
 	});
 	async function onSubmit(values: z.infer<typeof formSchema>) {
 		//console.log(values);
 		try {
-			// Assuming an async Signin function
-			//toast(
-			//	<pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-			//		<code className="text-white">{JSON.stringify(values, null, 4)}</code>
-			//	</pre>
-			//);
-
 			const response = await signIn('credentials', {
 				email: values.email,
 				password: values.password,
@@ -68,7 +69,7 @@ export default function SigninPreview() {
 			console.log('Login response: ', response);
 			if (response?.ok) {
 				toast('Login success!', {
-					description: <div>Hello User 👋</div>,
+					description: <div>Hello {values.email} 👋</div>,
 					//action: {
 					//	label: 'Undo',
 					//	onClick: () => console.log('Undo'),
@@ -94,10 +95,12 @@ export default function SigninPreview() {
 		} catch (error) {
 			console.error('Form submission error', error);
 			//toast.error('Failed to submit the form. Please try again.');
-			toast.error('Failed to submit the form. Please try again.', {
+			toast.error('Failed to Sign-in . Please try again.', {
 				description: (
-					<pre className="mt-2 w-full p-4">
-						<code className="text-white">{JSON.stringify(values, null, 4)}</code>
+					<pre className="mt-2 w-full p-4 text-wrap">
+						<code className="text-white">{getErrorMessage(error)}</code>
+						{/* 
+						<code className="text-white">{JSON.stringify(values, null, 4)}</code> */}
 					</pre>
 				),
 			});
@@ -105,8 +108,8 @@ export default function SigninPreview() {
 	}
 
 	return (
-		<div className="flex flex-col min-h-[50vh] h-full w-full items-center justify-center px-4">
-			<Card className="mx-auto max-w-sm">
+		<div className="flex flex-col min-h-[50vh] h-dvh w-full items-center justify-center px-4 text-lg">
+			<Card className="mx-auto max-w-sm my-auto">
 				<CardHeader>
 					<CardTitle className="text-2xl">Signin</CardTitle>
 					<CardDescription>Enter your email and password to Signin to your account.</CardDescription>
@@ -122,7 +125,14 @@ export default function SigninPreview() {
 										<FormItem className="grid gap-2">
 											<FormLabel htmlFor="email">Email</FormLabel>
 											<FormControl>
-												<Input id="email" placeholder="johndoe@mail.com" type="email" autoComplete="email" {...field} />
+												<Input
+													id="email"
+													placeholder="Enter your E-Mail address"
+													type="email"
+													autoComplete="email"
+													autoFocus
+													{...field}
+												/>
 											</FormControl>
 											<FormMessage />
 										</FormItem>
@@ -135,12 +145,17 @@ export default function SigninPreview() {
 										<FormItem className="grid gap-2">
 											<div className="flex justify-between items-center">
 												<FormLabel htmlFor="password">Password</FormLabel>
-												<Link href="#" className="ml-auto inline-block text-sm underline">
+												<Link href="./reset-password" className="ml-auto inline-block text-sm underline">
 													Forgot your password?
 												</Link>
 											</div>
 											<FormControl>
-												<PasswordInput id="password" placeholder="******" autoComplete="current-password" {...field} />
+												<PasswordInput
+													id="password"
+													placeholder="Enter your password"
+													autoComplete="current-password"
+													{...field}
+												/>
 											</FormControl>
 											<FormMessage />
 										</FormItem>
@@ -154,6 +169,51 @@ export default function SigninPreview() {
 									Signin with Google
 								</Button>
 								*/}
+							</div>
+							<div className="flex flex-row gap-3">
+								<Button
+									type="button"
+									variant="outline"
+									className="w-1/4"
+									onClick={() => {
+										form.setValue('email', siteConfig.admin_id);
+										form.setValue('password', siteConfig.admin_id);
+									}}
+								>
+									Admin
+								</Button>
+								<Button
+									type="button"
+									variant="outline"
+									className="w-1/4"
+									onClick={() => {
+										form.setValue('email', siteConfig.tester_id_1);
+										form.setValue('password', siteConfig.tester_id_1);
+									}}
+								>
+									Tester 1
+								</Button>
+								<Button
+									type="button"
+									variant="outline"
+									className="w-1/4"
+									onClick={() => {
+										form.setValue('email', siteConfig.tester_id_2);
+										form.setValue('password', siteConfig.tester_id_2);
+									}}
+								>
+									Tester 2
+								</Button>
+								<Button
+									type="button"
+									variant="outline"
+									className="w-1/4"
+									onClick={() => {
+										form.reset();
+									}}
+								>
+									Reset
+								</Button>
 							</div>
 						</form>
 					</Form>
