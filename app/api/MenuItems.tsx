@@ -137,7 +137,9 @@ export const GetMenuItemSources = (): MenuItem => {
 				label: 'Demo Pages',
 				icon: <RiFlaskLine />,
 				children: [
-					{ href: '/demo/about', label: 'About' },
+					{ href: '/demo/chart', label: 'Chart' },
+					//{ href: '/demo/file-tree', label: 'File Tree' },
+					{ href: '/demo/circular-progress', label: 'Circular Progress' },
 					{
 						href: '/demo/antd',
 						label: 'Anted',

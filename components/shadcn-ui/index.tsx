@@ -1,6 +1,7 @@
 export * from './accordion';
 export * from './alert-dialog';
 export * from './alert';
+//export * from './animated-circular-progress-bar';
 export * from './aspect-ratio';
 export * from './avatar';
 export * from './badge';

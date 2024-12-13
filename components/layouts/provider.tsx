@@ -29,7 +29,7 @@ export function Provider({ children, ...props }: ThemeProviderProps) {
 		return () => {
 			mediaQuery.removeEventListener('change', handleResize);
 		};
-	}, []);
+	});
 
 	return (
 		<SessionProvider>

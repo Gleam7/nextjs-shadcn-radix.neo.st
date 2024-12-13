@@ -8,7 +8,15 @@ nextjs with shadcn and radix-ui
 npx shadcn@latest init -d
 cd nextjs-shadcn-radix.neo.st
 
-npm i --legacy-peer-deps next@latest eslint-config-next@latest react@latest react-dom@latest remixicon @remixicon/react next-auth tailwind-variants zustand immer @radix-ui/primitive recharts cmdk @tanstack/react-table vaul @vercel/speed-insights
+npm i --legacy-peer-deps next@latest eslint-config-next@latest react@latest react-dom@latest remixicon @remixicon/react next-auth tailwind-variants zustand immer @radix-ui/primitive recharts cmdk @tanstack/react-table vaul @vercel/speed-insights framer-motion class-variance-authority
+
+#npm i --legacy-peer-deps
+
+# code pretty
+#npm remove --legacy-peer-deps remark-parse remark-rehype rehype-slug rehype-stringify rehype-pretty-code @rehype-pretty/transformers
+#npm remove --legacy-peer-deps @next/mdx rehype-highlight
+#npm remove --legacy-peer-deps prismjs @types/prismjs
+npm i --legacy-peer-deps react-syntax-highlighter @types/react-syntax-highlighter
 
 #npm update --legacy-peer-deps react react-dom
 
@@ -45,8 +53,8 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
 To learn more about Next.js, take a look at the following resources:
 
--   [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
--   [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 

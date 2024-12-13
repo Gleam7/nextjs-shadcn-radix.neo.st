@@ -5,6 +5,17 @@ export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
 }
 
+export const Wait = (ms: number) => {
+	const start = Date.now();
+	let now = start;
+	while (now - start < ms) {
+		now = Date.now();
+	}
+};
+export const Sleep = (ms: number) => {
+	return new Promise((resolve) => setTimeout(resolve, ms));
+};
+
 export const GetRandomString = (len: number): string => {
 	let s = '';
 	while (s.length < len)

@@ -27,7 +27,8 @@
 		--dark-scrollbar-bg: var(--light-scrollbar-bg);
 		--scrollbar-bg: var(--light-scrollbar-bg);
 
-		--destructive: 16, 100%, 50%; /*#FF4500 => hsl(16, 100%, 50%)*/
+		--destructive: 16, 100%, 50%;
+		/*#FF4500 => hsl(16, 100%, 50%)*/
 
 		--fixed-height: 6.3rem;
 	}
@@ -80,6 +81,12 @@
 	aside {
 		display: none !important;
 	}
+}
+
+/*****************************************************************************
+code {
+	display: block;
+	width: 100%;
 }
 
 /*****************************************************************************/
