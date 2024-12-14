@@ -3,8 +3,6 @@
 import * as React from 'react';
 import { Bar, BarChart, CartesianGrid, XAxis } from 'recharts';
 
-import { title } from '@/public/styles/title';
-
 import {
 	Card,
 	CardContent,
@@ -17,7 +15,7 @@ import {
 	ChartTooltipContent,
 } from '@/components/shadcn-ui';
 
-import { DummyContents } from '@/components/custom-ui';
+import { PageHeader } from '@/components/custom-ui';
 
 const chartData = [
 	{ date: '2024-04-01', desktop: 222, mobile: 150 },
@@ -139,7 +137,7 @@ export default function Page() {
 
 	return (
 		<div>
-			<h3 className={title()}>Demo -&gt; Chart</h3>
+			<PageHeader>Chart</PageHeader>
 			<div>
 				<Card>
 					<CardHeader className="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
@@ -212,7 +210,6 @@ export default function Page() {
 					</CardContent>
 				</Card>
 			</div>
-			<DummyContents />
 		</div>
 	);
 }

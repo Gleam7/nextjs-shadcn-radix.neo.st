@@ -93,16 +93,9 @@ export const GetMenuItemSources = (): MenuItem => {
 		label: 'Home',
 		icon: <RiHome3Line />,
 		children: [
-			{
-				href: '/docs',
-				label: 'Docs',
-				icon: <RiArticleLine />,
-				roles: ['user'],
-			},
-			{
-				href: '/pricing',
-				label: 'Pricing',
-			},
+			{ href: '/about', label: 'About' },
+			{ href: '/docs', label: 'Docs', icon: <RiArticleLine />, roles: ['user'] },
+			{ href: '/pricing', label: 'Pricing' },
 			{
 				href: '/blog',
 				label: 'Blog',
@@ -127,10 +120,6 @@ export const GetMenuItemSources = (): MenuItem => {
 						icon: <Tag />,
 					},
 				],
-			},
-			{
-				href: '/about',
-				label: 'About',
 			},
 			{
 				href: '/demo',
@@ -166,17 +155,9 @@ export const GetMenuItemSources = (): MenuItem => {
 				icon: <RiAdminLine />,
 				roles: ['admin'],
 				children: [
-					{
-						href: '/dashboard',
-						label: 'Dashboard',
-						icon: <LayoutGrid />,
-					},
+					{ href: '/dashboard', label: 'Dashboard', icon: <LayoutGrid /> },
 					{ href: '/admin/system/auth-group', label: 'Auth Group Mgmt.' },
-					{
-						href: '/users',
-						label: 'Users',
-						icon: <Users />,
-					},
+					{ href: '/users', label: 'Users', icon: <Users /> },
 				],
 			},
 		],
