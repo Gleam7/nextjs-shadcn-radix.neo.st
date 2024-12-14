@@ -16,14 +16,14 @@ const Page = () => {
 		<>
 			<PageHeader>{metadata.title?.toString()}</PageHeader>
 			<Accordion type="single" collapsible className="mx-auto w-11/12">
-				<AccordionItem value="Jal_Haru">
+				<AccordionItem value="JalHaru">
 					<AccordionTrigger>
 						<h4 className="text-2xl">
-							잘풀리는 하루<i className="text-base">Jal_Haru</i>
+							잘풀리는 하루<i className="text-base">JalHaru</i>
 						</h4>
 					</AccordionTrigger>
 					<AccordionContent>
-						<ScrollArea className="h-72 rounded-md border p-4 text-center text-xl font-['Jal_haru']">
+						<ScrollArea className="h-72 rounded-md border p-4 text-center text-xl font-[JalHaru]">
 							<p className="text-balance mb-4">
 								잘풀리는집 전용 서체는 잘풀리는집 로고를 바탕으로
 								<br />
@@ -68,14 +68,14 @@ const Page = () => {
 						</div>
 					</AccordionContent>
 				</AccordionItem>
-				<AccordionItem value="Moneygraphy-Rounded">
+				<AccordionItem value="MoneygraphyRounded">
 					<AccordionTrigger>
 						<h4 className="text-2xl">
-							머니그라피-라운디드<i className="text-base">Moneygraphy-Rounded</i>
+							머니그라피-라운디드<i className="text-base">MoneygraphyRounded</i>
 						</h4>
 					</AccordionTrigger>
 					<AccordionContent>
-						<ScrollArea className="h-72 rounded-md border p-4 text-center text-xl font-['Moneygraphy-Rounded']">
+						<ScrollArea className="h-72 rounded-md border p-4 text-center text-xl font-['MoneygraphyRounded']">
 							<p className="text-balance mb-4">
 								패션, 음악, 음식, 로컬, 테크, 여행, 스포츠. <br />
 								우리가 사랑하는 모든 건 경제와 연결되어 있어요.
@@ -91,7 +91,7 @@ const Page = () => {
 								머니그라피 서체를 소개합니다. <br />
 							</p>
 							<p className="text-balance mb-4">
-								<i className="text-primary">‘Moneygraphy-Pixel’</i>, <i className="text-primary">‘Moneygraphy-Rounded’</i>
+								<i className="text-primary">‘Moneygraphy-Pixel’</i>, <i className="text-primary">‘MoneygraphyRounded’</i>
 								<br />
 								두 가지로 제작된 머니그라피 서체는 <br />
 								누구나 무료로 자유롭게 사용할 수 있어요.
@@ -107,14 +107,14 @@ const Page = () => {
 						</div>
 					</AccordionContent>
 				</AccordionItem>
-				<AccordionItem value="omyu_pretty">
+				<AccordionItem value="OmyuPretty">
 					<AccordionTrigger>
 						<h4 className="text-2xl">
-							오뮤 다예쁨체<i className="text-base">omyu_pretty</i>
+							오뮤 다예쁨체<i className="text-base">OmyuPretty</i>
 						</h4>
 					</AccordionTrigger>
 					<AccordionContent>
-						<ScrollArea className="h-72 rounded-md border p-4 text-center text-xl font-['omyu_pretty']">
+						<ScrollArea className="h-72 rounded-md border p-4 text-center text-xl font-['OmyuPretty']">
 							<p className="text-balance mb-4">
 								Omyu Pretty.
 								<br />

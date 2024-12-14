@@ -52,7 +52,7 @@ const getDummyMenuSubItems = (hrefPrefix: string, labelPrefix: string, currentDe
 	return rtn;
 };
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const getDummyMenuItems = (): MenuItem[] => {
+const getDummyMenuItems = (maxDepth: number = 3): MenuItem[] => {
 	const rtn: MenuItem[] = [];
 
 	Array.from({ length: 5 }, (_, idx) => {
@@ -63,7 +63,7 @@ const getDummyMenuItems = (): MenuItem[] => {
 			icon: dummy_icon,
 		} as MenuItem;
 		if (idx % 2 == 0) {
-			dummy_menu_item.children = getDummyMenuSubItems(`/dummy_sub_${idx + 1}`, `Sub ${idx + 1}`, 1, 5);
+			dummy_menu_item.children = getDummyMenuSubItems(`/dummy_sub_${idx + 1}`, `Sub ${idx + 1}`, 1, maxDepth - 1 < 1 ? 1 : maxDepth - 1);
 		}
 		rtn.push(dummy_menu_item);
 	});
@@ -127,26 +127,14 @@ export const GetMenuItemSources = (): MenuItem => {
 				icon: <RiFlaskLine />,
 				children: [
 					{ href: '/demo/chart', label: 'Chart' },
-					//{ href: '/demo/file-tree', label: 'File Tree' },
 					{ href: '/demo/circular-progress', label: 'Circular Progress' },
-					{
-						href: '/demo/antd',
-						label: 'Anted',
-						children: [
-							{ href: '/demo/antd/collapse', label: 'Collapse' },
-							{ href: '/demo/antd/tabs', label: 'Tabs' },
-							{ href: '/demo/antd/upload', label: 'Upload' },
-						],
-					},
 					{ href: '/demo/font', label: 'Font styles' },
-					{ href: '/demo/table', label: 'Table' },
-					{
-						href: '/demo/table2',
-						label: 'Table with Search',
-					},
-					{ href: '/demo/movies', label: 'Movies' },
-					{ href: '/demo/lazy', label: 'Lazy' },
 					{ href: '/demo/image', label: 'Image' },
+					{ href: '/demo/lazy', label: 'Lazy' },
+					{ href: '/demo/movies', label: 'Movies' },
+					{ href: '/demo/table', label: 'Table' },
+					{ href: '/demo/table2', label: 'Table with Search' },
+					//{ href: '/demo/file-tree', label: 'File Tree' },
 				],
 			},
 			{
@@ -194,7 +182,7 @@ export const GetSubMenuItems = (currentPath: string): MenuItem[] => {
 	menu_items3 = setMunuItemIsActive(menu_items3, currentPath);
 
 	// Add dummy menu items
-	//menu_items3 = [...menu_items3, ...getDummyMenuItems()];
+	menu_items3 = [...menu_items3, ...getDummyMenuItems()];
 
 	return menu_items3;
 };

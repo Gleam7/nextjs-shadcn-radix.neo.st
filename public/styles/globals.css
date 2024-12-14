@@ -6,19 +6,19 @@
 	font-style: normal;
 	font-weight: normal;
 	src: url('/fonts/Jal_Haru.woff') format('woff');
-	font-family: 'Jal_Haru';
+	font-family: 'JalHaru';
 }
 
 @font-face {
 	font-style: normal;
 	font-weight: normal;
 	src: url('/fonts/omyu_pretty.woff2') format('woff2');
-	font-family: 'omyu_pretty';
+	font-family: 'OmyuPretty';
 }
 
 @font-face {
 	src: url('/fonts/Moneygraphy-Rounded.woff2') format('woff2'), url('/fonts/Moneygraphy-Rounded.woff') format('woff');
-	font-family: 'Moneygraphy-Rounded';
+	font-family: 'MoneygraphyRounded';
 }
 
 @layer base {
@@ -85,7 +85,7 @@
 
 /*****************************************************************************/
 body {
-	font-family: 'Jal_Haru', Arial, Helvetica, sans-serif;
+	font-family: 'JalHaru', Arial, Helvetica, sans-serif;
 }
 
 /*****************************************************************************/

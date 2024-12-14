@@ -1,4 +1,4 @@
-# nextjs-shadcn-radix.neo.st
+# [https://ui.neo.st](https://ui.neo.st)
 
 nextjs with shadcn and radix-ui
 
@@ -17,8 +17,6 @@ npm i --legacy-peer-deps next@latest eslint-config-next@latest react@latest reac
 #npm remove --legacy-peer-deps @next/mdx rehype-highlight
 #npm remove --legacy-peer-deps prismjs @types/prismjs
 npm i --legacy-peer-deps react-syntax-highlighter @types/react-syntax-highlighter
-
-#npm update --legacy-peer-deps react react-dom
 
 npm i --legacy-peer-deps @radix-ui/react-form
 
@@ -53,8 +51,8 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
 To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+-   [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+-   [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 

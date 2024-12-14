@@ -77,7 +77,7 @@ export function Providers({ children, themeProps }: ProvidersProps) {
 		token: {
 			fontSize: 14,
 			fontWeightStrong: 100,
-			fontFamily: 'Moneygraphy-Rounded, Jal_Haru, MonoplexKR-Regular, NanumGothic, "Noto Sans", sans-serif, "Apple Color Emoji"',
+			fontFamily: 'MoneygraphyRounded, JalHaru, MonoplexKR-Regular, NanumGothic, "Noto Sans", sans-serif, "Apple Color Emoji"',
 			//colorBgBase: '#fff',
 			//colorTextBase: '#fff',
 			//colorPrimary: '#52c41a',

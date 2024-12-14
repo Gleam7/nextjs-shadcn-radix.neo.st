@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 
 import { Button, ScrollArea, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/shadcn-ui';
 
-import { RiMoreLine } from '@remixicon/react';
+import { RiFileLine, RiMoreLine } from '@remixicon/react';
 
 import { CollapseMenuButton, SignInOutButton2 } from '@/components/custom-ui';
 
@@ -93,13 +93,17 @@ export function AdminLayoutSidebar() {
 																asChild
 															>
 																<Link href={href}>
-																	<span>{icon}</span>
+																	<span className="mr-2">
+																		{icon || (
+																			<RiFileLine
+																				className={cn(isOpen ? 'text-muted' : 'text-muted-foreground')}
+																			/>
+																		)}
+																	</span>
 																	<span
 																		className={cn(
 																			'truncate',
-																			isOpen === false
-																				? '-translate-x-100 opacity-0'
-																				: 'translate-x-0 opacity-100 ml-2'
+																			isOpen === false ? '-translate-x-100 opacity-0' : 'translate-x-0 opacity-100'
 																		)}
 																	>
 																		{label}

@@ -5,6 +5,11 @@ export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
 }
 
+export const getErrorMessage = (error: unknown) => {
+	if (error instanceof Error) return error.message;
+	return String(error);
+};
+
 export const Wait = (ms: number) => {
 	const start = Date.now();
 	let now = start;
@@ -34,7 +39,16 @@ export const GetRandomString = (len: number): string => {
 export const GetEnumFromString = <T extends Record<string, string>, K extends keyof T>(enumObj: T, value: string | number): T[keyof T] =>
 	enumObj[Object.keys(enumObj).filter((k) => enumObj[k as K].toString() === value)[0] as keyof typeof enumObj];
 
-export const getErrorMessage = (error: unknown) => {
-	if (error instanceof Error) return error.message;
-	return String(error);
+export const getPathToArray = (path: string): string[] => {
+	let prev_path = '';
+
+	const paths = path
+		.split('/')
+		.filter((item) => item && item !== '')
+		.map((item) => {
+			prev_path = `${prev_path}/${item}`;
+			return prev_path;
+		});
+
+	return paths;
 };

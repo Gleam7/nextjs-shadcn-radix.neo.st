@@ -24,7 +24,7 @@ const geistMono = localFont({
 
 const JalHaru = localFont({
 	src: '../public/fonts/Jal_Haru.woff',
-	variable: '--font-Jal_Haru',
+	variable: '--font-JalHaru',
 	weight: '100 900',
 });
 const MoneygraphyRounded = localFont({
@@ -34,7 +34,7 @@ const MoneygraphyRounded = localFont({
 });
 const OmyuPretty = localFont({
 	src: '../public/fonts/omyu_pretty.woff2',
-	variable: '--font-omyu_pretty',
+	variable: '--font-OmyuPretty',
 	weight: '100 900',
 });
 

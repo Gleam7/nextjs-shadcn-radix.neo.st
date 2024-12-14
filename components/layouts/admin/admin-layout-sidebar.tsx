@@ -3,7 +3,7 @@
 import React from 'react';
 import { usePathname } from 'next/navigation';
 
-import { cn } from '@/lib/utils';
+import { cn, getPathToArray } from '@/lib/utils';
 
 import { useSidebar } from '@/hooks/use-sidebar';
 import { useStore } from '@/hooks/use-store';
@@ -25,7 +25,7 @@ export function AdminLayoutSidebar() {
 	const sidebar = useStore(useSidebar, (x) => x);
 
 	const [activeLink, setActiveLink] = React.useState(current_path);
-	const [expandedMenus, setExpandedMenus] = React.useState<string[]>([]);
+	const [expandedMenus, setExpandedMenus] = React.useState<string[]>(getPathToArray(current_path));
 
 	if (!sidebar) return null;
 	const { isOpen, getOpenState, setIsHover, settings } = sidebar;
@@ -91,7 +91,7 @@ export function AdminLayoutSidebar() {
 				>
 					<Link href={item.href} title={item.label?.toString()} onClick={handleClick}>
 						<div className="flex">
-							<span className="mr-2">{item.icon ? item.icon : <RiFileLine className="text-muted-foreground" />}</span>
+							<span className="mr-2">{item.icon ? item.icon : <RiFileLine className="text-muted" />}</span>
 							{item.label /*text-muted-foreground  <RiCircleFill className="text-transparent" />*/}
 						</div>
 
