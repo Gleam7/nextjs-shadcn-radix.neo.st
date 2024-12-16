@@ -20,7 +20,9 @@ export const Wait = (ms: number) => {
 export const Sleep = (ms: number) => {
 	return new Promise((resolve) => setTimeout(resolve, ms));
 };
-
+export const GetRandomInt = (maxVal: number) => {
+	return Math.floor(Math.random() * maxVal);
+};
 export const GetRandomString = (len: number): string => {
 	let s = '';
 	while (s.length < len)
