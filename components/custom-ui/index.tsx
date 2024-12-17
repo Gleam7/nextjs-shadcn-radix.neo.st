@@ -3,6 +3,7 @@ export * from './collapse-menu-button';
 export * from './dummy-contents';
 export * from './dummy-page';
 export * from './expend-collapse-toggle-button';
+export * from './data-table-pagination';
 export * from './fullscreen-switch';
 export * from './page-header';
 export * from './progress-circle';

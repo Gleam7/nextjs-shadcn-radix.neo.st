@@ -28,7 +28,7 @@ export function AdminLayoutSidebar() {
 	const [expandedMenus, setExpandedMenus] = React.useState<string[]>(getPathToArray(current_path));
 
 	if (!sidebar) return null;
-	const { isOpen, getOpenState, setIsHover, settings } = sidebar;
+	const { isOpen, getOpenState, setIsHover, settings, setIsOpen } = sidebar;
 
 	const class_names_for_main_aside = [
 		'backdrop-blur-xl',
@@ -67,6 +67,7 @@ export function AdminLayoutSidebar() {
 				return false;
 			} else {
 				setActiveLink(id);
+				setIsOpen(false);
 				return true;
 			}
 		};

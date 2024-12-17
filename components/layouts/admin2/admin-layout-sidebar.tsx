@@ -23,7 +23,7 @@ export function AdminLayoutSidebar() {
 	const sidebar = useStore(useSidebar, (x) => x);
 
 	if (!sidebar) return null;
-	const { isOpen, getOpenState, setIsHover, settings } = sidebar;
+	const { isOpen, getOpenState, setIsHover, setIsOpen, settings } = sidebar;
 
 	const class_names_for_main_aside = cn(
 		'backdrop-blur-xl',
@@ -92,7 +92,7 @@ export function AdminLayoutSidebar() {
 																className={cn('w-full mb-1 px-0', isOpen ? 'justify-start' : 'justify-start', 'gap-0')}
 																asChild
 															>
-																<Link href={href}>
+																<Link href={href} onClick={() => setIsOpen(false)}>
 																	<span className="mr-2">
 																		{icon || (
 																			<RiFileLine
