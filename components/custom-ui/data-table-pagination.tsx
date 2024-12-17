@@ -27,7 +27,7 @@ export function DataTablePagination<TData>({ table }: DataTablePaginationProps<T
 		pageButtonEndIdx = pageButtonStartIdx + 10;
 	}
 	const PaginationButtons = (strIdx: number, endIdx: number) => {
-		var rtn = [];
+		const rtn = [];
 		for (let i = strIdx; i <= endIdx; i++) {
 			rtn.push(
 				<Button
