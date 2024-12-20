@@ -21,6 +21,26 @@
 	font-family: 'MoneygraphyRounded';
 }
 
+@font-face {
+	font-style: normal;
+	font-weight: normal;
+	src: url('/fonts/SejongGeulggot.woff2') format('woff2');
+	font-family: 'SejongGeulggot';
+}
+
+@font-face {
+	font-weight: 100 900;
+	src: url('/fonts/SUIT-Variable.woff2') format('woff2-variations');
+	font-family: 'SUIT';
+}
+
+@font-face {
+	font-style: normal;
+	font-weight: normal;
+	src: url('/fonts/D2Coding.woff') format('woff');
+	font-family: 'D2Coding';
+}
+
 @layer base {
 	:root {
 		--light-scrollbar-bg: rgba(125, 125, 125, 0.5);
@@ -42,6 +62,53 @@
 	::after {
 		@apply border-gray-300/70;
 		@apply dark:border-gray-300/30;
+	}
+}
+
+@layer components {
+
+	.slide-up,
+	.slide-down {
+		transform: translateY(0);
+		animation-duration: 1s;
+		animation-timing-function: ease-in-out;
+		animation-direction: alternate;
+		animation-fill-mode: forwards;
+		transition: all;
+		max-height: fit-content;
+	}
+
+	.slide-up {
+		animation-duration: .3s;
+		animation-name: slide-up;
+	}
+
+	.slide-down {
+		animation-name: slide-down;
+	}
+
+	@keyframes slide-up {
+		0% {
+			opacity: 1;
+			height: 100rem;
+		}
+
+		100% {
+			opacity: 0;
+			height: 0;
+		}
+	}
+
+	@keyframes slide-down {
+		0% {
+			opacity: 0;
+			height: 0;
+		}
+
+		100% {
+			opacity: 1;
+			height: 100rem;
+		}
 	}
 }
 
@@ -84,14 +151,32 @@
 }
 
 /*****************************************************************************/
-body {
-	font-family: 'JalHaru', Arial, Helvetica, sans-serif;
-}
-
-/*****************************************************************************/
 
 @import url(./tailwind.css);
 @import url(./theme_color_default.css);
 @import url(./theme_color_default2.css);
 /*@import url(./theme_color_blue.css);*/
 /*@import url(./theme_color_violet.css);*/
+
+/*****************************************************************************/
+body {
+	font-family: 'SUIT', Arial, Helvetica, sans-serif;
+}
+
+i {
+	font-family: 'OmyuPretty', 'SUIT', Arial, Helvetica, sans-serif !important;
+}
+
+h1 {
+	font-family: 'JalHaru', 'SUIT', Arial, Helvetica, sans-serif !important;
+}
+
+code,
+kbd,
+samp,
+pre {
+	font-family: 'D2Coding', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Andale Mono",
+		"Ubuntu Mono", "Liberation Mono", "Courier New", monospace !important;
+}
+
+/*****************************************************************************/

@@ -129,6 +129,8 @@ export const GetMenuItemSources = (): MenuItem => {
 					{ href: '/demo/chart', label: 'Chart' },
 					{ href: '/demo/circular-progress', label: 'Circular Progress' },
 					{ href: '/demo/data-table', label: 'DataTable (Client)' },
+					{ href: '/demo/data-table-server', label: 'DataTable (Server)' },
+					{ href: '/demo/data-table-server-2', label: 'DataTable (Server) 2' },
 					{ href: '/demo/font', label: 'Font styles' },
 					{ href: '/demo/image', label: 'Image' },
 					{ href: '/demo/lazy', label: 'Lazy' },

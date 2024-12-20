@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import { fontFamily } from 'tailwindcss/defaultTheme';
 
 const config: Config = {
 	darkMode: ['class'],
@@ -12,6 +13,10 @@ const config: Config = {
 			},
 		},
 		extend: {
+			fontFamily: {
+				sans: ['var(--font-SUIT)', 'var(--font-geist-sans)', ...fontFamily.sans],
+				mono: ['var(--font-D2Coding)', ...fontFamily.mono],
+			},
 			colors: {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',

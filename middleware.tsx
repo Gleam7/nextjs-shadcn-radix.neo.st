@@ -43,13 +43,13 @@ export async function middleware(request: NextRequest & { nextauth: { token: JWT
 	} else {
 		console.log('Goto signin page');
 		// If user is not authenticated, redirect to /signin
-		return NextResponse.redirect(new URL('/signin', request.nextUrl));
+		return NextResponse.redirect(new URL('/signin?callbackUrl='.concat(request.nextUrl.pathname), request.nextUrl));
 	}
 }
 
 export const config = {
 	matcher: [
 		// match all routes except static files and APIs
-		'/((?!api|_next/static|fonts|_next/image|favicon.ico|sitemap.xml|robots.txt|.*\\.png$|.*\\.svg$).*)',
+		'/((?!api|_next/static|fonts|_next/image|favicon.ico|sitemap.xml|robots.txt|site.webmanifest|.*\\.png$|.*\\.svg$).*)',
 	],
 };

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { cn } from '@/lib/utils';
 
 import { SidebarToggleButton } from '@/components/custom-ui';
+import { siteConfig } from '@/types';
 
 export const AdminLayoutFooter = () => {
 	const class_names_for_footer = cn(
@@ -36,8 +37,8 @@ export const AdminLayoutFooter = () => {
 			</div>
 			<div className="flex">
 				<div className="flex">
-					<Link href="https://neostory.net/" title="Neostory Networks Inc." target="_blank" className={cn(class_names_for_footer_link)}>
-						Neostory Networks Inc.
+					<Link href={siteConfig.authors[0].url} title="Neostory Networks Inc." target="_blank" className={cn(class_names_for_footer_link)}>
+						{siteConfig.authors[0].name}
 					</Link>
 					{` ©${new Date().getFullYear()}`}
 				</div>

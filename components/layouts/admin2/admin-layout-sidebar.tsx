@@ -25,46 +25,46 @@ export function AdminLayoutSidebar() {
 	if (!sidebar) return null;
 	const { isOpen, getOpenState, setIsHover, setIsOpen, settings } = sidebar;
 
-	const class_names_for_main_aside = cn(
-		'backdrop-blur-xl',
-		'bg-background/10',
-		'border-divider',
-		'border-slate-100 dark:border-slate-50/5',
-		'border-r',
-		'duration-300',
-		'ease-in-out',
-		'fixed',
-		'flex',
-		//'flex-col',
-		'left-0',
-		'h-[calc(100vh-var(--fixed-height))]',
-		'overflow-y-auto',
-		'p-0',
-		'text-default-600',
-		'top-14',
-		'transition-[width]',
-		'-translate-x-full',
-		//'lg:translate-x-0',
-		'translate-x-0',
-		'z-10'
-	);
-
 	return (
 		<>
 			<aside
-				className={cn(class_names_for_main_aside, 'w-10', getOpenState() ? 'w-60' : '', settings.disabled && 'hidden')}
+				className={cn(
+					'backdrop-blur-xl',
+					'bg-background/10',
+					'border-divider',
+					'border-slate-100 dark:border-slate-50/5',
+					'border-r',
+					'duration-300',
+					//'ease-in-out',
+					'fixed',
+					'flex',
+					//'flex-col',
+					'left-0',
+					'h-[calc(100vh-var(--fixed-height))]',
+					'overflow-y-auto',
+					'p-0',
+					'text-default-600',
+					'top-14',
+					'transition-x-[width]',
+					'-translate-x-full',
+					'translate-x-0',
+					'z-10',
+					getOpenState() ? 'w-60' : 'w-10',
+					settings.disabled && 'hidden',
+					'min-h-fixedLayoutMain'
+				)}
 				onMouseEnter={() => setIsHover(true)}
 				onMouseLeave={() => setIsHover(false)}
 			>
 				<section className="w-full flex flex-col items-start space-y-1">
-					<ScrollArea className={cn('[&>div>div[style]]:!block w-full py-2', isOpen ? 'pl-2 pr-3' : 'px-2')}>
+					<ScrollArea className={cn('[&>div>div[style]]:!block w-full py-2', getOpenState() ? 'pl-2 pr-3' : 'px-2')}>
 						<nav className="">
 							<ul className="">
 								{menuList.map(({ groupLabel, menus }, index) => (
 									<li className={cn('', groupLabel ? 'pt-3' : '', '')} key={index}>
-										{(isOpen && groupLabel) || isOpen === undefined ? (
+										{getOpenState() && groupLabel ? (
 											<p className="text-sm text-muted-foreground truncate h-6">{groupLabel}</p>
-										) : !isOpen && isOpen !== undefined && groupLabel ? (
+										) : !getOpenState() && groupLabel ? (
 											<TooltipProvider>
 												<Tooltip delayDuration={100}>
 													<TooltipTrigger className="inline-flex items-center gap-0 whitespace-nowrap w-full justify-start h-4">
@@ -103,7 +103,7 @@ export function AdminLayoutSidebar() {
 																	<span
 																		className={cn(
 																			'truncate',
-																			isOpen === false ? '-translate-x-100 opacity-0' : 'translate-x-0 opacity-100'
+																			getOpenState() ? 'translate-x-0 opacity-100' : '-translate-x-100 opacity-0'
 																		)}
 																	>
 																		{label}
@@ -111,7 +111,7 @@ export function AdminLayoutSidebar() {
 																</Link>
 															</Button>
 														</TooltipTrigger>
-														{isOpen === false && <TooltipContent side="right">{label}</TooltipContent>}
+														{!getOpenState() && <TooltipContent side="right">{label}</TooltipContent>}
 													</Tooltip>
 												</TooltipProvider>
 											) : (
@@ -121,7 +121,7 @@ export function AdminLayoutSidebar() {
 													label={label}
 													active={active === undefined ? pathname.startsWith(href) : active}
 													submenus={children}
-													isOpen={isOpen}
+													isOpen={getOpenState()}
 												/>
 											)
 										)}

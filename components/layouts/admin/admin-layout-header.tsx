@@ -10,7 +10,7 @@ import { RiNextjsFill } from '@remixicon/react';
 
 import { cn } from '@/lib/utils';
 
-import { GetHeaderMenuItems, GetMenuItems } from '@/app/api/MenuItems';
+import { GetHeaderMenuItems } from '@/app/api/MenuItems';
 
 import { FullscreenSwitch, SignInOutButton, ThemeSwitch } from '@/components/custom-ui';
 
@@ -26,7 +26,7 @@ export const AdminLayoutHeader = (params: HeaderProps) => {
 	const router = useRouter();
 
 	const [menuItem, setMenuItem] = React.useState<MenuItem[]>([]);
-	const [menuItem2, setMenuItem2] = React.useState<MenuItem[]>([]);
+	//const [menuItem2, setMenuItem2] = React.useState<MenuItem[]>([]);
 
 	const class_names_for_header = cn(
 		'flex',
@@ -46,7 +46,7 @@ export const AdminLayoutHeader = (params: HeaderProps) => {
 
 	React.useEffect(() => {
 		GetHeaderMenuItems().then((data) => setMenuItem(data));
-		GetMenuItems().then((data) => setMenuItem2(data));
+		//GetMenuItems().then((data) => setMenuItem2(data));
 	}, []);
 
 	return (
@@ -100,11 +100,13 @@ export const AdminLayoutHeader = (params: HeaderProps) => {
 				</div>
 			</nav>
 
-			{menuItem2.map((item, idx) => {
-				const isActive = item.href === '/' ? pathname === item.href : pathname.startsWith(item.href);
-				console.log(idx, item, isActive);
-				return '';
-			})}
+			{
+				//menuItem2.map((item, idx) => {
+				//	const isActive = item.href === '/' ? pathname === item.href : pathname.startsWith(item.href);
+				//	console.log(idx, item, isActive);
+				//	return '';
+				//})
+			}
 		</header>
 	);
 };

@@ -29,92 +29,13 @@ export function Provider({ children, ...props }: ThemeProviderProps) {
 		return () => {
 			mediaQuery.removeEventListener('change', handleResize);
 		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (
-		<SessionProvider>
-			<SpeedInsights></SpeedInsights>
+		<SessionProvider basePath="/api/auth">
 			<NextThemesProvider {...props}>{children}</NextThemesProvider>
+			{process.env.VERCEL_URL && <SpeedInsights></SpeedInsights>}
 		</SessionProvider>
 	);
 }
-
-/*
-'use client';
-
-import * as React from 'react';
-
-import { useRouter } from 'next/navigation';
-
-import { SessionProvider } from 'next-auth/react';
-
-import { NextUIProvider } from '@nextui-org/system';
-import { ThemeProvider as NextThemesProvider } from 'next-themes';
-import { ThemeProviderProps } from 'next-themes/dist/types';
-
-import { App, ConfigProvider, MappingAlgorithm, ThemeConfig, theme } from 'antd';
-import { createCache, extractStyle, StyleProvider } from '@ant-design/cssinjs';
-
-import { useThemeSettings } from '@/stores/themeConfig';
-
-import type Entity from '@ant-design/cssinjs/es/Cache';
-
-export interface ProvidersProps {
-	children: React.ReactNode;
-	themeProps?: ThemeProviderProps;
-}
-
-export function Providers({ children, themeProps }: ProvidersProps) {
-	const router = useRouter();
-	const settings = useThemeSettings();
-	const cache = React.useMemo<Entity>(() => createCache(), [settings]);
-
-	const [themeAlgorithm, setThemeAlgorithm] = React.useState<MappingAlgorithm[]>([theme.defaultAlgorithm]);
-	const theme_config: ThemeConfig = {
-		//cssVar: true,
-		hashed: false,
-		algorithm: themeAlgorithm,
-		token: {
-			fontSize: 14,
-			fontWeightStrong: 100,
-			fontFamily: 'MoneygraphyRounded, JalHaru, MonoplexKR-Regular, NanumGothic, "Noto Sans", sans-serif, "Apple Color Emoji"',
-			//colorBgBase: '#fff',
-			//colorTextBase: '#fff',
-			//colorPrimary: '#52c41a',
-		},
-	};
-
-	React.useEffect(() => {
-		if (settings.themeMode === 'light' || (settings.themeMode === 'system' && !window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-			setThemeAlgorithm(settings.themeCompact ? [theme.defaultAlgorithm, theme.compactAlgorithm] : [theme.defaultAlgorithm]);
-			document.body.classList.remove('dark');
-			document.body.classList.add('light');
-		} else {
-			setThemeAlgorithm(settings.themeCompact ? [theme.darkAlgorithm, theme.compactAlgorithm] : [theme.darkAlgorithm]);
-			document.body.classList.remove('light');
-			document.body.classList.add('dark');
-		}
-
-		if (settings.themeMode === 'light' || (settings.themeMode === 'system' && !window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-			setThemeName('light');
-		} else {
-			setThemeName('dark');
-		}
-	}, [sidebar_collapsed, settings]);
-
-	return (
-		<SessionProvider>
-			<NextUIProvider navigate={router.push}>
-				<NextThemesProvider {...themeProps}>
-					<ConfigProvider theme={theme_config}>
-						<App>
-							<StyleProvider>{children}</StyleProvider>
-						</App>
-					</ConfigProvider>
-				</NextThemesProvider>
-			</NextUIProvider>
-		</SessionProvider>
-	);
-}
-
-*/

@@ -45,7 +45,7 @@ const Page = async () => {
 				<AccordionItem value="userInfo">
 					<AccordionTrigger>User Info</AccordionTrigger>
 					<AccordionContent>
-						<CodeWithHighlight code={JSON.stringify(session, null, 4)} language="json5" />
+						<CodeWithHighlight code={JSON.stringify(session, null, 4)} language="json" />
 					</AccordionContent>
 				</AccordionItem>
 				<AccordionItem value="packageJson">

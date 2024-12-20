@@ -1,11 +1,14 @@
+//import type { ReadonlyURLSearchParams } from 'next/navigation';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { ZodError } from 'zod';
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
 }
 
 export const getErrorMessage = (error: unknown) => {
+	if (error instanceof ZodError) return JSON.stringify(error.flatten().fieldErrors).replaceAll('"', "'");
 	if (error instanceof Error) return error.message;
 	return String(error);
 };
@@ -31,12 +34,23 @@ export const GetRandomString = (len: number): string => {
 			.substr(2, len - s.length);
 	return s;
 };
+/**
+ * Stole this from the @radix-ui/primitive
+ * @see https://github.com/radix-ui/primitives/blob/main/packages/core/primitive/src/primitive.tsx
+ */
+export function composeEventHandlers<E>(
+	originalEventHandler?: (event: E) => void,
+	ourEventHandler?: (event: E) => void,
+	{ checkForDefaultPrevented = true } = {}
+) {
+	return function handleEvent(event: E) {
+		originalEventHandler?.(event);
 
-//export const GetEnumFromString = <T extends Record<string, string>>(val: string, _enum: T, _default?: T) => {
-//	const enumName = (Object.keys(_enum) as Array<keyof T>).find((k) => _enum[k] === val);
-//	if (!enumName) return _default || _enum[0]; //throw Error(); // here fail fast as an example
-//	return _enum[enumName];
-//};
+		if (checkForDefaultPrevented === false || !(event as unknown as Event).defaultPrevented) {
+			return ourEventHandler?.(event);
+		}
+	};
+}
 
 export const GetEnumFromString = <T extends Record<string, string>, K extends keyof T>(enumObj: T, value: string | number): T[keyof T] =>
 	enumObj[Object.keys(enumObj).filter((k) => enumObj[k as K].toString() === value)[0] as keyof typeof enumObj];
@@ -54,3 +68,8 @@ export const getPathToArray = (path: string): string[] => {
 
 	return paths;
 };
+
+export function getIsMacOS() {
+	if (typeof navigator === 'undefined') return false;
+	return navigator.userAgent?.includes('Mac');
+}

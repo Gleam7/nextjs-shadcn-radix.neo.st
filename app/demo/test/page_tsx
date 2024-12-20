@@ -3,17 +3,17 @@ import React from 'react';
 import type { Metadata } from 'next';
 
 import { PageHeader } from '@/components/custom-ui';
-import { DataTable } from './data-table';
+import { Grid } from './grid_tsx';
 
 export const metadata: Metadata = {
-	title: 'DataTable (Client)',
+	title: 'Table',
 };
 
 const Page = async () => {
 	return (
 		<>
 			<PageHeader>{metadata.title?.toString()}</PageHeader>
-			<DataTable />
+			<Grid />
 		</>
 	);
 };

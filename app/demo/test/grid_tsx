@@ -1,0 +1,136 @@
+'use client';
+import React from 'react';
+
+import { cn } from '@/lib/utils';
+
+import { Button } from '@/components/shadcn-ui';
+import { RiSearch2Line, RiSkipDownLine } from '@remixicon/react';
+import { ExpendCollapseToggleButton } from '@/components/custom-ui';
+
+export const Grid = () => {
+	const [isSearchExpanded, setSearchExpand] = React.useState<boolean>(false);
+	const classes = 'bg-indigo-200/30 p-0 rounded-lg items-center text-center [&_div]:items-center';
+	//={cn(classes,'addtional')}
+	return (
+		<div className={cn()}>
+			<div className={cn('flex flex-row gap-2', '')}>
+				<div className={cn(classes, 'basis-full')}>
+					<div className={cn('flex flex-row gap-1', '')}>
+						<div className={cn(classes, 'basis-40')}>02</div>
+						<div className={cn(classes, 'basis-full flex justify-between')}>
+							<div className={cn(classes, 'basis-full')}>04</div>
+							<ExpendCollapseToggleButton
+								className=""
+								onExpendedChange={(isExpended) => {
+									setSearchExpand(isExpended);
+								}}
+							/>
+						</div>
+					</div>
+					{isSearchExpanded && (
+						<>
+							<div className={cn('flex flex-row gap-1 mt-1', '')}>
+								<div className={cn(classes, 'basis-40')}>02</div>
+								<div className={cn(classes, 'basis-full')}>04</div>
+							</div>
+							<div className={cn('flex flex-row gap-1 mt-1', '')}>
+								<div className={cn(classes, 'basis-40')}>02</div>
+								<div className={cn(classes, 'basis-full')}>04</div>
+							</div>
+						</>
+					)}
+				</div>
+				<div className={cn(classes, 'flex justify-center items-center')}>
+					<Button className={cn('p-2', isSearchExpanded && ' h-full')}>
+						<RiSearch2Line />
+						Search
+					</Button>
+				</div>
+			</div>
+			Grid Auto Columns
+			<div className={cn(classes, 'w-full  flex flex-wrap')}>
+				<div className="grid grid-flow-col-dense gap-1 flex-wrap">
+					{Array.from({ length: 15 }).map((_, idx) => {
+						return (
+							<div key={idx} className={cn(classes, 'w-40')}>
+								{(idx + 1).toString().padStart(3, '0')}
+							</div>
+						);
+					})}
+				</div>
+			</div>
+			Grid Auto Rows
+			<div className="grid grid-flow-row auto-rows-max">
+				{Array.from({ length: 15 }).map((_, idx) => {
+					return (
+						<div key={idx} className={cn(classes, 'w-40')}>
+							{(idx + 1).toString().padStart(3, '0')}
+						</div>
+					);
+				})}
+			</div>
+			Grid Template Rows
+			<div className="grid grid-rows-4 grid-flow-col gap-4">
+				{Array.from({ length: 15 }).map((_, idx) => {
+					return (
+						<div key={idx} className={cn(classes, 'w-40')}>
+							{(idx + 1).toString().padStart(3, '0')}
+						</div>
+					);
+				})}
+			</div>
+			Grid Template Rows with Subgrid
+			<div className="grid grid-rows-4 grid-flow-col gap-4">
+				{Array.from({ length: 15 }).map((_, idx) => {
+					return idx == 7 ? (
+						<div className="grid grid-rows-subgrid gap-4 row-span-3">
+							<div className={cn(classes, 'row-start-2')}>{(idx + 1).toString().padStart(3, '0')}</div>
+						</div>
+					) : (
+						<div key={idx} className={cn(classes, 'w-40')}>
+							{(idx + 1).toString().padStart(3, '0')}
+						</div>
+					);
+				})}
+			</div>
+			Grid Template Rows with Subgrid 2
+			<div className="grid grid-rows-4 grid-flow-col gap-4">
+				{Array.from({ length: 15 }).map((_, idx) => {
+					return idx == 7 ? (
+						<div className="grid grid-rows-subgrid gap-4 row-span-3">
+							<div className={cn(classes, 'row-start-2')}>{(idx + 1).toString().padStart(3, '0')}</div>
+						</div>
+					) : (
+						<div key={idx} className={cn(classes, 'w-40')}>
+							{(idx + 1).toString().padStart(3, '0')}
+						</div>
+					);
+				})}
+			</div>
+			<hr />
+			{/*
+			
+			<div class="parent">
+				<div class="div1"> </div>
+				<div class="div2"> </div>
+				<div class="div3"> </div>
+				<div class="div4"> </div>
+				<div class="div5"> </div>
+			</div>
+			.parent {
+				display: grid;
+				grid-template-columns: repeat(5, 1fr);
+				grid-template-rows: repeat(5, 1fr);
+				grid-column-gap: 0px;
+				grid-row-gap: 0px;
+			}
+			
+			.div1 { grid-area: 1 / 5 / 5 / 6; }
+			.div2 { grid-area: 1 / 1 / 2 / 5; }
+			.div3 { grid-area: 2 / 1 / 3 / 5; }
+			.div4 { grid-area: 3 / 1 / 4 / 5; }
+			.div5 { grid-area: 4 / 1 / 5 / 5; }
+			*/}
+		</div>
+	);
+};

@@ -9,6 +9,7 @@ import '@/public/styles/globals.css';
 
 import { cn } from '@/lib/utils';
 
+import { Toaster } from '@/components/shadcn-ui/sonner';
 import { Provider } from '@/components/layouts';
 
 const geistSans = localFont({
@@ -37,34 +38,86 @@ const OmyuPretty = localFont({
 	variable: '--font-OmyuPretty',
 	weight: '100 900',
 });
+const SejongGeulggot = localFont({
+	src: '../public/fonts/SejongGeulggot.woff2',
+	variable: '--font-SejongGeulggot',
+	weight: '100 900',
+});
+const SUIT = localFont({
+	src: '../public/fonts/SUIT-Variable.woff2',
+	variable: '--font-SUIT',
+	weight: '100 900',
+});
+const D2Coding = localFont({
+	src: '../public/fonts/D2Coding.woff',
+	variable: '--font-D2Coding',
+	weight: '100 900',
+});
 
+const baseUrl = new URL(
+	process.env.APP_URL
+		? `${process.env.APP_URL}`
+		: process.env.VERCEL_URL
+		? `https://${process.env.VERCEL_URL}`
+		: `http://localhost:${process.env.PORT || 3000}`
+);
+const imageUrl = 'https://ui.shadcn.com/og.jpg';
 export const metadata: Metadata = {
-	metadataBase: new URL(
-		process.env.APP_URL
-			? `${process.env.APP_URL}`
-			: process.env.VERCEL_URL
-			? `https://${process.env.VERCEL_URL}`
-			: `http://localhost:${process.env.PORT || 3000}`
-	),
+	metadataBase: baseUrl,
 	title: {
 		default: siteConfig.name,
 		template: `%s - ${siteConfig.name}`,
 	},
+	authors: siteConfig.authors,
+	creator: siteConfig.authors[0].name,
 	description: siteConfig.description,
+	keywords: siteConfig.keywords,
 	icons: {
 		icon: '/favicon.ico',
+		//icon: [
+		//	{
+		//		media: '(prefers-color-scheme: light)',
+		//		url: '/favicon-light.svg',
+		//		href: '/favicon-light.svg',
+		//	},
+		//	{
+		//		media: '(prefers-color-scheme: dark)',
+		//		url: '/favicon-dark.svg',
+		//		href: '/favicon-dark.svg',
+		//	},
+		//],
+		//shortcut: '/favicon-16x16.png',
+		//apple: '/apple-touch-icon.png',
 	},
+	manifest: `${baseUrl}/site.webmanifest`,
 	alternates: {
 		canonical: '/',
 	},
 	openGraph: {
-		url: '/',
+		url: baseUrl,
 		title: siteConfig.name,
 		description: siteConfig.description,
 		type: 'website',
+		images: {
+			url: imageUrl,
+			alt: siteConfig.name,
+			secureUrl: imageUrl,
+			//type: string | undefined;
+			width: 1200,
+			height: 630,
+		},
 	},
 	twitter: {
 		card: 'summary_large_image',
+		creator: siteConfig.authors[0].name,
+		images: {
+			url: imageUrl,
+			alt: siteConfig.name,
+			secureUrl: imageUrl,
+			//type: string | undefined;
+			width: 1200,
+			height: 630,
+		},
 		title: siteConfig.name,
 		description: siteConfig.description,
 	},
@@ -90,28 +143,8 @@ export const viewport: Viewport = {
 	<link rel="manifest" href="https://ui.shadcn.com/site.webmanifest" />
 	<link rel="shortcut icon" href="/favicon-16x16.png" />
 	<meta charset="utf-8" />
-	<meta name="author" content="shadcn" />
-	<meta name="creator" content="shadcn" />
-	<meta name="description" content="Beautifully designed components that you can copy and paste into your apps. Accessible. Customizable. Open Source." />
-	<meta name="keywords" content="Next.js,React,Tailwind CSS,Server Components,Radix UI" />
 	<meta name="next-size-adjust" />
 	<meta name="theme-color" content="#ffffff" />
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:creator" content="@shadcn" />
-	<meta name="twitter:description" content="Beautifully designed components that you can copy and paste into your apps. Accessible. Customizable. Open Source." />
-	<meta name="twitter:image" content="https://ui.shadcn.com/og.jpg" />
-	<meta name="twitter:title" content="shadcn/ui" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta property="og:description" content="Beautifully designed components that you can copy and paste into your apps. Accessible. Customizable. Open Source." />
-	<meta property="og:image:alt" content="shadcn/ui" />
-	<meta property="og:image:height" content="630" />
-	<meta property="og:image:width" content="1200" />
-	<meta property="og:image" content="https://ui.shadcn.com/og.jpg" />
-	<meta property="og:locale" content="en_US" />
-	<meta property="og:site_name" content="shadcn/ui" />
-	<meta property="og:title" content="shadcn/ui" />
-	<meta property="og:type" content="website" />
-	<meta property="og:url" content="https://ui.shadcn.com" />
 	<title>shadcn/ui</title>
 */
 export default function RootLayout({
@@ -130,12 +163,16 @@ export default function RootLayout({
 					geistSans.variable,
 					OmyuPretty.variable,
 					MoneygraphyRounded.variable,
-					JalHaru.variable
+					JalHaru.variable,
+					SejongGeulggot.variable,
+					SUIT.variable,
+					D2Coding.variable
 				)}
 			>
 				<Provider attribute="class" defaultTheme="system" enableSystem>
 					{children}
 				</Provider>
+				<Toaster richColors />
 			</body>
 		</html>
 	);

@@ -19,7 +19,7 @@ export const useSidebar = create(
 		(set, get) => ({
 			isOpen: true,
 			isHover: false,
-			settings: { disabled: false, isHoverOpen: false },
+			settings: { disabled: false, isHoverOpen: true },
 			toggleOpen: () => {
 				set({ isOpen: !get().isOpen });
 			},

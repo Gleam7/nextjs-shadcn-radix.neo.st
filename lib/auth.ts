@@ -52,19 +52,10 @@ export const authOptions: NextAuthOptions = {
 			},
 			async authorize(credentials, req) {
 				if (!credentials) {
-					return null;
+					throw new Error("Can't find user credentials info.");
 				}
+				console.log('credentials: ', credentials, 'req: ', req);
 				try {
-					//const userCredential = await signInWithEmailAndPassword(auth, credentials.email, credentials.password);
-					//const user = userCredential.user;
-					//if (user) {
-					//	return {
-					//		id: user.uid,
-					//		email: user.email,
-					//	};
-					//} else {
-					//	return null;
-					//}
 					if (credentials.email == siteConfig.admin_id && credentials.password === siteConfig.admin_id) {
 						return {
 							id: '01',
@@ -86,9 +77,8 @@ export const authOptions: NextAuthOptions = {
 							email: credentials.email,
 							accessToken: '<ACCESS_TOKEN>',
 						};
-					} else {
-						throw new Error("Can't find user info or user info is not valid.");
 					}
+					throw new Error("Can't find user info or user info is not valid.");
 					// eslint-disable-next-line @typescript-eslint/no-explicit-any
 				} catch (error: any) {
 					console.log('credentials: ', credentials, 'req: ', req);
@@ -155,6 +145,10 @@ export const authOptions: NextAuthOptions = {
 	},
 	pages: {
 		signIn: '/signin',
+		signOut: '/signout',
+		error: '/auth-error', // Error code passed in query string as ?error=
+		verifyRequest: '/auth-verify-request', // (used for check email message)
+		newUser: '/sign-up', // New users will be directed here on first sign in
 	},
 	secret: (process.env.NEXTAUTH_SECRET || 'U9By60o30K3XVuFVu4kRz6vfq6iBPwh6') as string,
 	session: {
@@ -183,5 +177,16 @@ export const authOptions: NextAuthOptions = {
 		//async encode() {},
 		//async decode() {},
 	},
-	debug: process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test',
+	logger: {
+		error(code, metadata) {
+			console.error(code, metadata);
+		},
+		warn(code) {
+			console.warn(code);
+		},
+		debug(code, metadata) {
+			console.debug(code, metadata);
+		},
+	},
+	debug: !process.env.VERCEL && (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test'),
 };

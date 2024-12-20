@@ -8,7 +8,7 @@ nextjs with shadcn and radix-ui
 npx shadcn@latest init -d
 cd nextjs-shadcn-radix.neo.st
 
-npm i --legacy-peer-deps next@latest eslint-config-next@latest react@latest react-dom@latest remixicon @remixicon/react next-auth tailwind-variants zustand immer @radix-ui/primitive recharts cmdk @tanstack/react-table vaul @vercel/speed-insights framer-motion class-variance-authority dayjs
+npm i --legacy-peer-deps next@latest eslint-config-next@latest react@latest react-dom@latest remixicon @remixicon/react next-auth tailwind-variants zustand immer @radix-ui/primitive recharts cmdk @tanstack/react-table vaul @vercel/speed-insights framer-motion class-variance-authority dayjs newsapi
 
 #npm i --legacy-peer-deps
 

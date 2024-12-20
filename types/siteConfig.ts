@@ -3,6 +3,13 @@ export type SiteConfig = typeof siteConfig;
 export const siteConfig = {
 	name: 'Next.js + Shadcn/ui + Radix-ui',
 	description: 'Make beautiful websites regardless of your design experience.',
+	keywords: 'Next.js,React,Tailwind CSS,Server Components,Radix UI',
+	authors: [
+		{
+			url: 'https://neostory.net',
+			name: 'Neostory Networks Inc.',
+		},
+	],
 
 	admin_id: 'Admin1@test.com',
 	tester_id_1: 'Tester@test.com',
