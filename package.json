@@ -59,7 +59,7 @@
 		"glob": "^11.0.0",
 		"immer": "^10.1.1",
 		"input-otp": "^1.4.1",
-		"lucide-react": "^0.468.0",
+		"lucide-react": "^0.469.0",
 		"newsapi": "^2.4.1",
 		"next": "^15.1.2",
 		"next-auth": "^4.24.11",
