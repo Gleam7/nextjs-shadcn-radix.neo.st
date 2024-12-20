@@ -50,7 +50,7 @@ export function DataTablePagination<TData>({ table }: DataTablePaginationProps<T
 	};
 
 	return (
-		<div className="flex items-center justify-end space-x-2">
+		<div className="flex flex-wrap items-center justify-end space-x-2">
 			<div className="flex items-center space-x-2">
 				<p className="text-sm font-medium">Rows per page</p>
 				<Select
@@ -63,7 +63,7 @@ export function DataTablePagination<TData>({ table }: DataTablePaginationProps<T
 						<SelectValue placeholder={table.getState().pagination.pageSize} />
 					</SelectTrigger>
 					<SelectContent side="top">
-						{[5, 10, 15, 20, 30, 40, 50, 100].map((pageSize) => (
+						{[10, 15, 20, 30, 40, 50, 100].map((pageSize) => (
 							<SelectItem key={pageSize} value={`${pageSize}`}>
 								{pageSize}
 							</SelectItem>

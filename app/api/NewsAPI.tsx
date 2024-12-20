@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import { z } from 'zod';
 import type { FetchResult } from '@/types';
-import { getErrorMessage } from '@/lib/utils';
+import { getErrorMessage, Wait } from '@/lib/utils';
 
 const DataBackendURL = 'https://newsapi.org/v2/everything?q=[query]&from=[date]&pageSize=[pageSize]&page=[page]&sortBy=[orderBy]&language=[lang]';
 
@@ -22,7 +22,7 @@ export const apiParamsSchema = z.object({
 	page: z.coerce.number().min(1).optional().default(1),
 	per_page: z.coerce.number().min(10).max(100).optional().default(10),
 	sort: z.string().optional().default('publishedAt'),
-	title: z.string().optional().default('Apple'),
+	query: z.string().optional().default('Apple'),
 	fromDate: z.coerce.date().optional().nullable(),
 });
 export type apiParams = z.infer<typeof apiParamsSchema>;
@@ -46,27 +46,30 @@ export const GetNewsData = async (params: apiParams): Promise<FetchResult<NewsAP
 		if (!parsedParams.success) {
 			throw parsedParams.error;
 		}
-
+		if (!parsedParams.data.query) {
+			parsedParams.data.query = 'Apple';
+		}
 		const reqUrl = DataBackendURL.replace('[page]', parsedParams.data.page.toString())
 			.replace('[pageSize]', parsedParams.data.per_page.toString())
-			.replace('[query]', encodeURIComponent(parsedParams.data.title))
+			.replace('[query]', encodeURIComponent(parsedParams.data.query))
 			.replace('[orderBy]', parsedParams.data.sort)
 			.replace('[lang]', 'en')
-			.replace('[date]', parsedParams.data.fromDate ? dayjs(parsedParams.data.fromDate).add(-1, 'day').format('YYYY-MM-DD') : '');
+			.replace('[date]', parsedParams.data.fromDate ? dayjs(parsedParams.data.fromDate).add(-1, 'day').format('YYYY-MM-DD') : '')
+			.concat(`&apiKey=${apiKey}`);
 		console.log('request url:', reqUrl);
 
 		const res = await fetch(reqUrl, {
-			method: 'GET', // *GET, POST, PUT, DELETE 등
-			mode: 'cors', // no-cors, *cors, same-origin
-			cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-			credentials: 'same-origin', // include, *same-origin, omit
-			headers: {
-				'Content-Type': 'application/json',
-				// 'Content-Type': 'application/x-www-form-urlencoded',
-				Authorization: `Beares ${apiKey}`,
-			},
-			redirect: 'follow', // manual, *follow, error
-			referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+			//method: 'GET', // *GET, POST, PUT, DELETE 등
+			//mode: 'cors', // no-cors, *cors, same-origin
+			//cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+			//credentials: 'same-origin', // include, *same-origin, omit
+			//headers: {
+			//	'Content-Type': 'application/json',
+			//	// 'Content-Type': 'application/x-www-form-urlencoded',
+			//	Authorization: `Beares ${apiKey}`,
+			//},
+			//redirect: 'follow', // manual, *follow, error
+			//referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
 			//body: JSON.stringify(data),
 		});
 		const resData = await res.json();
@@ -77,6 +80,8 @@ export const GetNewsData = async (params: apiParams): Promise<FetchResult<NewsAP
 		rtn.data = resData.articles;
 		rtn.result_count = resData.totalResults;
 		rtn.success = resData.status === 'ok';
+
+		Wait(1000);
 	} catch (error) {
 		console.log(error);
 		rtn.message = getErrorMessage(error);

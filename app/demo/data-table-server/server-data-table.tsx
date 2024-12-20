@@ -101,8 +101,9 @@ function useServerTable<TData>(props: UseServerTableProps<TData>): UseDataTableR
 	const [sorting, setSorting] = React.useState<SortingState>([]);
 
 	React.useEffect(() => {
-		router.replace(`${path}?${createQueryString({ page, per_page })}`);
-	}, []);
+		const queryString = createQueryString({ page, per_page });
+		router.replace(`${path}?${queryString}`);
+	}, [path, createQueryString, page, per_page, router]);
 	const [{ pageIndex, pageSize }, setPagination] = React.useState<PaginationState>({
 		pageIndex: page - 1,
 		pageSize: per_page,
@@ -118,27 +119,24 @@ function useServerTable<TData>(props: UseServerTableProps<TData>): UseDataTableR
 
 	React.useEffect(() => {
 		if (sorting[0]) {
-			router.push(
-				`${path}?${createQueryString({
-					page: pageIndex + 1,
-					per_page: pageSize,
-					sort: `${sorting[0].id}:${sorting[0].desc ? 'desc' : 'asc'}`,
-				})}`
-			);
-		}
-	}, [sorting]);
-
-	React.useEffect(() => {
-		router.push(
-			`${path}?${createQueryString({
+			const queryString = createQueryString({
 				page: pageIndex + 1,
 				per_page: pageSize,
-			})}`,
-			{
-				scroll: false,
-			}
-		);
-	}, [pageIndex, pageSize]);
+				sort: `${sorting[0].id}:${sorting[0].desc ? 'desc' : 'asc'}`,
+			});
+			router.push(`${path}?${queryString}`);
+		}
+	}, [sorting, createQueryString, pageIndex, pageSize, router, path]);
+
+	React.useEffect(() => {
+		const queryString = createQueryString({
+			page: pageIndex + 1,
+			per_page: pageSize,
+		});
+		router.push(`${path}?${queryString}`, {
+			scroll: false,
+		});
+	}, [pageIndex, pageSize, createQueryString, router, path]);
 
 	const table = useReactTable({
 		...props,
@@ -208,9 +206,9 @@ const DataTableColumns: ColumnDef<NewsAPIResponseArticles>[] = [
 	},
 ];
 
-const TableSearch = ({ searchKey = 'search', placeholder = 'Please provide a placeholder' }: { searchKey?: string; placeholder?: string }) => {
+const TableSearch = ({ searchKey = 'query', placeholder = 'Please provide a placeholder' }: { searchKey?: string; placeholder?: string }) => {
 	if (!searchKey.length) {
-		searchKey = 'search';
+		searchKey = 'query';
 	}
 	const searchParams = useSearchParams();
 	const router = useRouter();
@@ -220,7 +218,7 @@ const TableSearch = ({ searchKey = 'search', placeholder = 'Please provide a pla
 		if (value === null || value === '') {
 			params.delete(searchKey);
 		} else {
-			params.set(searchKey, value);
+			params.set('query', value);
 		}
 
 		router.push(`${path}/?${params.toString()}`);
