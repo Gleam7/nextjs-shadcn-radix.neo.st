@@ -26,32 +26,44 @@ const geistMono = localFont({
 const JalHaru = localFont({
 	src: '../public/fonts/Jal_Haru.woff',
 	variable: '--font-JalHaru',
-	weight: '100 900',
+	weight: 'normal',
+	style: 'normal',
 });
 const MoneygraphyRounded = localFont({
 	src: '../public/fonts/Moneygraphy-Rounded.woff',
 	variable: '--font-MoneygraphyRounded',
-	weight: '100 900',
+	weight: 'normal',
+	style: 'normal',
 });
 const OmyuPretty = localFont({
 	src: '../public/fonts/omyu_pretty.woff2',
 	variable: '--font-OmyuPretty',
-	weight: '100 900',
+	weight: 'normal',
+	style: 'normal',
 });
 const SejongGeulggot = localFont({
 	src: '../public/fonts/SejongGeulggot.woff2',
 	variable: '--font-SejongGeulggot',
-	weight: '100 900',
+	weight: 'normal',
+	style: 'normal',
 });
 const SUIT = localFont({
 	src: '../public/fonts/SUIT-Variable.woff2',
 	variable: '--font-SUIT',
 	weight: '100 900',
+	style: 'normal',
 });
 const D2Coding = localFont({
 	src: '../public/fonts/D2Coding.woff',
 	variable: '--font-D2Coding',
-	weight: '100 900',
+	weight: 'normal',
+	style: 'normal',
+});
+
+const MaterialIcons = localFont({
+	src: '../public/fonts/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2',
+	variable: '--font-MaterialIcons',
+	weight: '400',
 });
 
 const baseUrl = new URL(
@@ -166,7 +178,8 @@ export default function RootLayout({
 					JalHaru.variable,
 					SejongGeulggot.variable,
 					SUIT.variable,
-					D2Coding.variable
+					D2Coding.variable,
+					MaterialIcons.variable
 				)}
 			>
 				<Provider attribute="class" defaultTheme="system" enableSystem>

@@ -1,3 +1,13 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"]
+	"extends": ["next/core-web-vitals", "next/typescript"],
+
+	"rules": {
+		"@typescript-eslint/no-explicit-any": [
+			"off", // "error" if we want to enforce usage of `unknown` instead
+			{
+				"ignoreRestArgs": false,
+				"fixToUnknown": true
+			}
+		]
+	}
 }

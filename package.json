@@ -6,13 +6,14 @@
 		"dev": "next dev",
 		"dev2": "next dev -p 3030",
 		"build": "next build",
-		"clean_build": "rm -rf .next node_modules && ncu -u && npm i && next build",
+		"clean_build": "rm -rf .next node_modules && ncu -u && npm i --legacy-peer-deps && npm run build",
+		"clean_build_2": "rm -rf .next node_modules && ncu -u && npm i && npm run build",
 		"start": "next start",
 		"lint": "next lint",
-		"export": "rm -rf node_modules && ncu -u && npm i && next build && export"
+		"export": "npm run clean_build && next export"
 	},
 	"dependencies": {
-		"@autoform/react": "^2.1.0",
+		"@autoform/react": "^2.2.0",
 		"@hookform/resolvers": "^3.9.1",
 		"@next/eslint-plugin-next": "^15.1.2",
 		"@radix-ui/primitive": "^1.1.1",
@@ -48,6 +49,8 @@
 		"@tanstack/react-table": "^8.20.6",
 		"@types/react-syntax-highlighter": "^15.5.13",
 		"@vercel/speed-insights": "^1.1.0",
+		"ag-grid-community": "^33.0.3",
+		"ag-grid-react": "^33.0.3",
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
 		"cmdk": "^1.0.4",
@@ -67,7 +70,7 @@
 		"react": "^19.0.0",
 		"react-day-picker": "^9.4.4",
 		"react-dom": "^19.0.0",
-		"react-hook-form": "^7.54.1",
+		"react-hook-form": "^7.54.2",
 		"react-resizable-panels": "^2.1.7",
 		"react-syntax-highlighter": "^15.6.1",
 		"recharts": "^2.15.0",
@@ -88,6 +91,8 @@
 		"eslint": "^9.17.0",
 		"eslint-config-next": "^15.1.2",
 		"postcss": "^8",
+		"prettier": "^3.4.2",
+		"prettier-plugin-tailwindcss": "^0.6.9",
 		"tailwindcss": "^3.4.17",
 		"typescript": "^5"
 	}

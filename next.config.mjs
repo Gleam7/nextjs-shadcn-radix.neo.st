@@ -15,6 +15,11 @@ const nextConfig = {
 			},
 		];
 	},
+
+	//output: 'export',
+	experimental: {
+		urlImports: ['https://fonts.googleapis.com'],
+	},
 };
 
 export default nextConfig;

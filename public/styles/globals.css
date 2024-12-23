@@ -26,9 +26,11 @@
 	font-weight: normal;
 	src: url('/fonts/SejongGeulggot.woff2') format('woff2');
 	font-family: 'SejongGeulggot';
+	unicode-range: U+0041-005A, U+0061-007A, U+0030-0039, U+AC00-D7A3;
 }
 
 @font-face {
+	font-style: normal;
 	font-weight: 100 900;
 	src: url('/fonts/SUIT-Variable.woff2') format('woff2-variations');
 	font-family: 'SUIT';
@@ -39,6 +41,30 @@
 	font-weight: normal;
 	src: url('/fonts/D2Coding.woff') format('woff');
 	font-family: 'D2Coding';
+}
+
+/* @import url('https://fonts.googleapis.com/css?family=Material+Icons'); */
+@font-face {
+	font-style: normal;
+	font-weight: 400;
+	src: url('/fonts/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2') format('woff2');
+	font-family: 'Material Icons';
+}
+
+.material-icons {
+	word-wrap: normal;
+	-webkit-font-feature-settings: 'liga';
+	-webkit-font-smoothing: antialiased;
+	display: inline-block;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 24px;
+	line-height: 1;
+	font-family: 'Material Icons';
+	letter-spacing: normal;
+	direction: ltr;
+	text-transform: none;
+	white-space: nowrap;
 }
 
 @layer base {
@@ -79,7 +105,7 @@
 	}
 
 	.slide-up {
-		animation-duration: .3s;
+		animation-duration: 0.3s;
 		animation-name: slide-up;
 	}
 
@@ -175,8 +201,14 @@ code,
 kbd,
 samp,
 pre {
-	font-family: 'D2Coding', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Andale Mono",
-		"Ubuntu Mono", "Liberation Mono", "Courier New", monospace !important;
+	font-family: 'D2Coding', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Andale Mono', 'Ubuntu Mono', 'Liberation Mono', 'Courier New',
+		monospace !important;
+}
+
+/*****************************************************************************/
+
+.ag-header-cell-label {
+	justify-content: center;
 }
 
 /*****************************************************************************/

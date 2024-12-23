@@ -3,7 +3,7 @@ import React from 'react';
 //import { getServerSession } from 'next-auth';
 import { getSession } from 'next-auth/react';
 
-import { RiHome3Line, RiAdminLine, RiFlaskLine, RiArticleLine, RiNewsLine, RiCircleFill } from '@remixicon/react';
+import { RiHome3Line, RiAdminLine, RiFlaskLine, RiArticleLine, RiNewsLine, RiCircleFill, RiTableView } from '@remixicon/react';
 
 //import { authOptions } from '@/lib/auth';
 
@@ -122,21 +122,30 @@ export const GetMenuItemSources = (): MenuItem => {
 				],
 			},
 			{
-				href: '/demo',
+				href: '/demo/chart',
 				label: 'Demo Pages',
 				icon: <RiFlaskLine />,
 				children: [
 					{ href: '/demo/chart', label: 'Chart' },
 					{ href: '/demo/circular-progress', label: 'Circular Progress' },
-					{ href: '/demo/data-table', label: 'DataTable (Client)' },
-					{ href: '/demo/data-table-server', label: 'DataTable (Server)' },
-					{ href: '/demo/data-table-server-2', label: 'DataTable (Server) 2' },
 					{ href: '/demo/font', label: 'Font styles' },
 					{ href: '/demo/image', label: 'Image' },
 					{ href: '/demo/lazy', label: 'Lazy' },
 					{ href: '/demo/movies', label: 'Movies' },
-					{ href: '/demo/table', label: 'Table' },
 					{ href: '/demo/tree-select', label: 'TreeSelect' },
+					{
+						href: '/demo/table',
+						label: 'Tables',
+						icon: <RiTableView />,
+						children: [
+							{ href: '/demo/table', label: 'Table' },
+							{ href: '/demo/data-table', label: 'DataTable (Client)' },
+							{ href: '/demo/data-table-server', label: 'DataTable (Server)' },
+							{ href: '/demo/data-table-server-2', label: 'DataTable (Server) 2' },
+							{ href: '/demo/data-grid', label: 'DataGrid (Jspreadsheet CE)' },
+						],
+					},
+
 					//{ href: '/demo/file-tree', label: 'File Tree' },
 					//{ href: '/demo/table3', label: 'Table 3' },
 					//{ href: '/demo/test', label: 'Test' },
